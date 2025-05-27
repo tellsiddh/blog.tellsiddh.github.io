@@ -1,6 +1,6 @@
 ---
 layout: home
-title: "Welcome"
+author_profile: true
 ---
 
 Welcome to my blog!
