@@ -1,1 +1,3 @@
 out.txt
+_site
+*.lock
