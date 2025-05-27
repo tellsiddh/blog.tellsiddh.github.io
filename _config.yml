@@ -12,12 +12,6 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-include-cache
-  - jekyll-paginate
-
-paginate: 5
-paginate_path: "/page:num"
-paginate_base: ""  # ← This targets your homepage (index.md)
-
 
 author: siddarth
 
