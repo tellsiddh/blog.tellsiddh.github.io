@@ -105,7 +105,7 @@ main:
 File: ./_data/authors.yml
 siddarth:
   name: "Siddarth Jain"
-  avatar: "/assets/images/profile.jpg"
+  avatar: "/assets/images/profile.jpeg"
   bio: "Engineer, blogger, and curious mind."
   location: "USA"
   links:
