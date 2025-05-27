@@ -14,36 +14,6 @@ plugins:
 
 author: siddarth
 
-# Navigation links
-nav:
-  - title: "Home"
-    url: /
-  - title: "About"
-    url: /about/
-  - title: "Posts"
-    url: /year-archive/
-  - title: "Tags"
-    url: /tags/
-  - title: "Categories"
-    url: /categories/
-
-# SEO & Social
-seo:
-  type: Blog
-  name: "Siddarth Jain"
-  twitter:
-    username: your_handle
-  social:
-    links:
-      - https://github.com/yourusername
-      - https://twitter.com/yourhandle
-
-# Analytics (optional)
-analytics:
-  provider: "google-gtag"
-  google:
-    tracking_id: "G-XXXXXXXXXX"
-
 # Archives
 category_archive:
   type: liquid
