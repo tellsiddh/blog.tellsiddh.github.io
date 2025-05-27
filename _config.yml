@@ -19,10 +19,6 @@ pagination:
   paginate_path: "/page:num"
 
 
-collections:
-  posts:
-    output: true
-
 author: siddarth
 
 # Archives
