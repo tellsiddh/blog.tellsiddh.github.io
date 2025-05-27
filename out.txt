@@ -58,8 +58,6 @@ File: ./_layouts/home.html
 layout: default
 ---
 
-{% include page__hero.html %}
-
 <div class="archive">
   <h1>{{ page.title }}</h1>
   <p>{{ page.excerpt }}</p>
@@ -82,14 +80,6 @@ title: "Welcome to My Blog"
 author_profile: true
 excerpt: "Sharing my thoughts on tech, life, and code."
 ---
-
-{%- comment -%} Skip hero if no image {%- endcomment -%}
-{% if page.header and page.header.image %}
-  {% include page__hero.html %}
-{% endif %}
-
-{% assign feature_row_intro = site.posts | where_exp:"item","item.tags contains 'jekyll'" | slice: 0,3 %}
-{% include feature_row items=feature_row_intro %}
 
 File: ./tags.md
 ---
@@ -171,14 +161,6 @@ siddarth:
     - label: "Twitter"
       icon: "fab fa-twitter"
       url: "https://twitter.com/tellsiddh"
-
-File: ./_data/feature_row.yml
-intro:
-  - image_path: /assets/images/hero.avif
-    alt: "A nice welcome"
-    title: "Welcome to My Blog"
-    excerpt: "Read my posts about tech, life, and code."
-    url: /year-archive/
 
 File: ./about.md
 ---
