@@ -17,4 +17,13 @@ layout: default
       </li>
     {% endfor %}
   </ul>
+
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      <a class="pagination--prev" href="{{ paginator.previous_page_path | relative_url }}">← Newer Posts</a>
+    {% endif %}
+    {% if paginator.next_page %}
+      <a class="pagination--next" href="{{ paginator.next_page_path | relative_url }}">Older Posts →</a>
+    {% endif %}
+  </div>
 </div>
