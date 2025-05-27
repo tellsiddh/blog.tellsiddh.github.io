@@ -8,5 +8,4 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
 
-author:
-  name: Siddarth Jain
+author: Siddarth Jain
