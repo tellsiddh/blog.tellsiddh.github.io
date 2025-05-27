@@ -12,17 +12,12 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-include-cache
-  - jekyll-paginate-v2
-  - jekyll-archives
+  - jekyll-paginate
 
 pagination:
-  enabled: true
-  per_page: 5
-  permalink: '/page/:num/'
-  title: ':title - page :num'
-  trail:
-    before: 2
-    after: 2
+  paginate: 5
+  paginate_path: "/page:num"
+
 
 collections:
   posts:
@@ -37,12 +32,3 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
-
-jekyll-archives:
-  enabled:
-    - year
-    - month
-  layout: archive
-  permalinks:
-    year: '/:year/'
-    month: '/:year/:month/'
