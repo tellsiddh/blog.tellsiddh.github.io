@@ -28,3 +28,12 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
+
+jekyll-archives:
+  enabled:
+    - year
+    - month
+  layout: archive
+  permalinks:
+    year: '/:year/'
+    month: '/:year/:month/'

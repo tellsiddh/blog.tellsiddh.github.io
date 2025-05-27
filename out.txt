@@ -29,6 +29,12 @@ share: true
 related: true
 ---
 
+This is the intro to the post.
+
+<!--more-->
+
+Full content starts here...
+
 This is my first blog post using Jekyll and Minimal Mistakes!
 
 Stay tuned for more content 🚀
@@ -43,7 +49,9 @@ sitemap: false
 
 <div style="text-align: center; margin-top: 3rem;">
   <h1>😕 Oops! Page Not Found</h1>
-  <p>The page you're looking for doesn’t exist or has been moved.
+  <p>The page you're looking for doesn’t exist or has been moved.</p>
+  <p><a href="{{ '/' | relative_url }}" class="btn">← Back to Home</a></p>
+</div>
 
 File: ./_layouts/home.html
 ---
@@ -61,6 +69,7 @@ layout: default
       <li>
         <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
         <p class="page__meta">{{ post.date | date: "%B %-d, %Y" }}</p>
+        <p>{{ post.excerpt }}</p>
       </li>
     {% endfor %}
   </ul>
@@ -74,7 +83,10 @@ author_profile: true
 excerpt: "Sharing my thoughts on tech, life, and code."
 ---
 
-{% include feature_row id="intro" type="center" %}
+{%- comment -%} Skip hero if no image {%- endcomment -%}
+{% if page.header and page.header.image %}
+  {% include page__hero.html %}
+{% endif %}
 
 {% assign feature_row_intro = site.posts | where_exp:"item","item.tags contains 'jekyll'" | slice: 0,3 %}
 {% include feature_row items=feature_row_intro %}
@@ -86,7 +98,7 @@ title: "Browse by Tags"
 permalink: /tags/
 ---
 File: ./_config.yml
-title: tellsiddh's Blog
+title: tellsiddh's blog
 description: A simple blog powered by Jekyll
 url: "https://blog.tellsiddh.com"
 baseurl: ""
@@ -129,7 +141,9 @@ main:
     url: /
   - title: "About"
     url: /about/
-  - title: "Archive"
+  - title: "All Posts"
+    url: /posts/
+  - title: "Yearly Archive"
     url: /year-archive/
   - title: "Tags"
     url: /tags/
@@ -149,6 +163,14 @@ siddarth:
     - label: "Twitter"
       icon: "fab fa-twitter"
       url: "https://twitter.com/tellsiddh"
+
+File: ./_data/feature_row.yml
+intro:
+  - image_path: /assets/images/hero.avif
+    alt: "A nice welcome"
+    title: "Welcome to My Blog"
+    excerpt: "Read my posts about tech, life, and code."
+    url: /year-archive/
 
 File: ./about.md
 ---
