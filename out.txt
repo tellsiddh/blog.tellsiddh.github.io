@@ -1,8 +1,9 @@
 File: ./year-archive.md
 ---
-layout: year-archive
 title: "Blog Archive"
+layout: archive
 permalink: /year-archive/
+author_profile: true
 ---
 File: ./CNAME
 blog.tellsiddh.com
@@ -29,17 +30,21 @@ File: ./_layouts/home.html
 layout: default
 ---
 
-<h1>{{ page.title }}</h1>
-<p>{{ content }}</p>
+{% include page__hero.html %}
 
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      <small>{{ post.date | date: "%b %-d, %Y" }}</small>
-    </li>
-  {% endfor %}
-</ul>
+<div class="archive">
+  <h1>{{ page.title }}</h1>
+  <p>{{ page.excerpt }}</p>
+
+  <ul class="archive__items">
+    {% for post in site.posts %}
+      <li>
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        <p class="page__meta">{{ post.date | date: "%B %-d, %Y" }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
 
 File: ./index.md
 ---
@@ -91,7 +96,7 @@ main:
   - title: "About"
     url: /about/
   - title: "Posts"
-    url: /year-archive/
+    url: /
   - title: "Tags"
     url: /tags/
   - title: "Categories"
