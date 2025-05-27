@@ -1,6 +1,0 @@
-intro:
-  - image_path: /assets/images/hero.avif
-    alt: "A nice welcome"
-    title: "Welcome to My Blog"
-    excerpt: "Read my posts about tech, life, and code."
-    url: /year-archive/
