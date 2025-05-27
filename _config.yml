@@ -25,3 +25,6 @@ tag_archive:
 
 twitter_username: tellsiddh
 github_username: tellsiddh
+
+include:
+  - _includes/head-custom.html
