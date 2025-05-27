@@ -2,7 +2,7 @@ title: tellsiddh's Blog
 description: A simple blog powered by Jekyll
 url: "https://blog.tellsiddh.com"
 baseurl: ""
-theme: minimal
+theme: minima
 
 plugins:
   - jekyll-feed
