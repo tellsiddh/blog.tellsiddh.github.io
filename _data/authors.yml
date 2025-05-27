@@ -1,0 +1,12 @@
+siddarth:
+  name: "Siddarth Jain"
+  avatar: "/assets/images/profile.jpg"
+  bio: "Engineer, blogger, and curious mind."
+  location: "USA"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: "https://github.com/tellsiddh"
+    - label: "Twitter"
+      icon: "fab fa-twitter"
+      url: "https://twitter.com/tellsiddh"
