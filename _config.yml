@@ -1,0 +1,12 @@
+title: tellsiddh's Blog
+description: A simple blog powered by Jekyll
+url: "https://blog.tellsiddh.com"
+baseurl: ""
+theme: minimal-mistakes-jekyll
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+author:
+  name: Siddarth Jain
