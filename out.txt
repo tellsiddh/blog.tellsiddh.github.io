@@ -1,3 +1,11 @@
+File: ./posts/index.md
+---
+layout: archive
+title: "All Posts"
+pagination:
+  enabled: true
+---
+
 File: ./year-archive.md
 ---
 title: "Blog Archive"
@@ -24,6 +32,18 @@ related: true
 This is my first blog post using Jekyll and Minimal Mistakes!
 
 Stay tuned for more content 🚀
+
+File: ./404.html
+---
+layout: single
+title: "Page Not Found"
+permalink: /404.html
+sitemap: false
+---
+
+<div style="text-align: center; margin-top: 3rem;">
+  <h1>😕 Oops! Page Not Found</h1>
+  <p>The page you're looking for doesn’t exist or has been moved.
 
 File: ./_layouts/home.html
 ---
@@ -53,6 +73,12 @@ title: "Welcome to My Blog"
 author_profile: true
 excerpt: "Sharing my thoughts on tech, life, and code."
 ---
+
+{% include feature_row id="intro" type="center" %}
+
+{% assign feature_row_intro = site.posts | where_exp:"item","item.tags contains 'jekyll'" | slice: 0,3 %}
+{% include feature_row items=feature_row_intro %}
+
 File: ./tags.md
 ---
 layout: tags
@@ -67,12 +93,19 @@ baseurl: ""
 
 remote_theme: "mmistakes/minimal-mistakes@4.27.1"
 minimal_mistakes_skin: "dark" # or "default", "air", "neon" etc.
+excerpt_separator: "<!--more-->"
 
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-include-cache
+  - jekyll-paginate-v2
+
+pagination:
+  enabled: true
+  per_page: 5
+  permalink: '/page/:num/'
 
 author: siddarth
 
@@ -90,13 +123,14 @@ source "https://rubygems.org"
 gem "github-pages", group: :jekyll_plugins
 
 File: ./_data/navigation.yml
+# _data/navigation.yml
 main:
   - title: "Home"
     url: /
   - title: "About"
     url: /about/
-  - title: "Posts"
-    url: /
+  - title: "Archive"
+    url: /year-archive/
   - title: "Tags"
     url: /tags/
   - title: "Categories"

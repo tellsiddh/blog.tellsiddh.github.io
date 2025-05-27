@@ -11,6 +11,12 @@ share: true
 related: true
 ---
 
+This is the intro to the post.
+
+<!--more-->
+
+Full content starts here...
+
 This is my first blog post using Jekyll and Minimal Mistakes!
 
 Stay tuned for more content 🚀
