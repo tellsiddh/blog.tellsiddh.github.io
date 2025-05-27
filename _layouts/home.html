@@ -5,6 +5,13 @@ layout: default
 {{ content }}
 
 <div class="archive">
-  <h1>{{ page.title }}</h1>
-  <p>{{ page.excerpt }}</p>
+  <h2>Recent Posts</h2>
+  {% for post in site.posts limit:5 %}
+    <article>
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+      <p>{{ post.excerpt | strip_html | truncatewords: 50 }}</p>
+      <p><a href="{{ post.url | relative_url }}">Read more →</a></p>
+    </article>
+    <hr>
+  {% endfor %}
 </div>
