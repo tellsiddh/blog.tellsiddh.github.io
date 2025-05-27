@@ -129,6 +129,14 @@ tag_archive:
   type: liquid
   path: /tags/
 
+jekyll-archives:
+  enabled:
+    - year
+    - month
+  layout: archive
+  permalinks:
+    year: '/:year/'
+    month: '/:year/:month/'
 File: ./Gemfile
 source "https://rubygems.org"
 
