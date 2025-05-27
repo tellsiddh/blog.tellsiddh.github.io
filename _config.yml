@@ -13,6 +13,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-include-cache
   - jekyll-paginate-v2
+  - jekyll-archives
 
 pagination:
   enabled: true
