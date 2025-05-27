@@ -22,3 +22,6 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
+
+twitter_username: tellsiddh
+github_username: tellsiddh
