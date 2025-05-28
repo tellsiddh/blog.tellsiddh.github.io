@@ -8,6 +8,8 @@ read_time: true
 comments: true
 share: true
 related: true
+toc: true
+toc_sticky: true
 ---
 
 I've collected and used thousands of terminal commands through actual devops, AI/ML, data science, full-stack web development, and cloud engineering workflows.
