@@ -3,7 +3,7 @@ layout: single
 title: "My Terminal Workflow"
 date: 2025-05-26
 author: siddarth
-categories: [tech, MacOS]
+categories: [tech]
 read_time: true
 comments: true
 share: true
