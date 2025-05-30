@@ -34,7 +34,7 @@ fish
 
 ---
 
-### 📦 Install Core Tools
+### Install Core Tools
 
 ```bash
 brew install git htop jq wget tree curl tmux
@@ -44,7 +44,7 @@ brew install git htop jq wget tree curl tmux
 
 ---
 
-### ➕ Add PATHs in `fish` shell
+### Add PATHs in `fish` shell
 
 ```fish
 fish_add_path /opt/homebrew/bin/
@@ -58,7 +58,7 @@ nano ~/.config/fish/config.fish
 
 ---
 
-### 🧠 Use `alias` for shortcuts
+### Use `alias` for shortcuts
 
 ```bash
 alias gs="git status"
@@ -75,7 +75,7 @@ nano ~/.config/fish/config.fish
 
 ---
 
-## 🔧 Git: Daily Driver for Projects
+## Git: Daily Driver for Projects
 
 These are the most-used git commands that show up repeatedly across dev workflows:
 
@@ -105,7 +105,7 @@ git diff
 
 ---
 
-## 💻 Python Development Workflows
+## Python Development Workflows
 
 Create isolated environments with `conda`:
 
@@ -138,9 +138,9 @@ tuna import.log
 
 ---
 
-## 📡 Networking, SSH & System Tools
+## Networking, SSH & System Tools
 
-### 🔐 SSH with custom keys
+### SSH with custom keys
 
 ```bash
 ssh -i ~/.ssh/id_rsa user@host
@@ -154,7 +154,7 @@ ssh-copy-id user@host
 
 ---
 
-### 🌐 Diagnose DNS, IP, Connectivity
+### Diagnose DNS, IP, Connectivity
 
 ```bash
 ping google.com
@@ -171,7 +171,7 @@ ipconfig getifaddr en0
 
 ---
 
-### 🔎 Scan network devices
+### Scan network devices
 
 ```bash
 sudo nmap -sn 192.168.1.0/24
@@ -179,7 +179,7 @@ sudo nmap -sn 192.168.1.0/24
 
 ---
 
-## 📦 Package Managers
+## Package Managers
 
 ### Brew (macOS)
 
@@ -202,7 +202,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🔎 File and Text Utilities
+## File and Text Utilities
 
 ### Search history
 
@@ -246,7 +246,7 @@ Ctrl + L
 
 ---
 
-## 📈 System Monitoring
+## System Monitoring
 
 ### htop
 
@@ -274,7 +274,7 @@ kill -9 <PID>
 
 ---
 
-## ⚙️ Automation Scripts
+## Automation Scripts
 
 Make a Python file executable:
 
@@ -297,7 +297,7 @@ unzip file.zip
 
 ---
 
-## 🌐 APIs & Web Tools
+## APIs & Web Tools
 
 ### Curl with headers
 
@@ -320,7 +320,7 @@ curl -X PUT "$SIGNED_S3_URL" \
 
 ---
 
-## 🎙️ Audio Tools (AI & Speech)
+## Audio Tools (AI & Speech)
 
 ### TTS using LLaMA-TTS:
 
@@ -340,7 +340,7 @@ curl -X POST http://localhost:5000/tts \
 
 ---
 
-## 📚 Data Engineering Tools
+## Data Engineering Tools
 
 ### Terraform
 
@@ -375,7 +375,7 @@ LOCALSTACK_AUTH_TOKEN=dummy localstack start
 
 ---
 
-## 🔥 High-impact One-liners
+## High-impact One-liners
 
 ### Re-run last command with `sudo`
 
@@ -407,7 +407,7 @@ git clean -fd
 
 ---
 
-## 📚 Miscellaneous Yet Powerful
+## Miscellaneous Yet Powerful
 
 ### View markdown docs in browser
 
@@ -430,7 +430,7 @@ echo "<JWT_PART_2>" | base64 --decode
 
 ---
 
-## 🧠 Final Words
+## Final Words
 
 These commands reflect months of actual engineering activity — not just tutorials. If you found this useful:
 
