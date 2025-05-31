@@ -18,9 +18,9 @@ This post captures **the most frequently used**, **most impactful**, and **uniqu
 
 <!--more-->
 
-## 🛠️ Setup & Shell Enhancements
+## Setup & Shell Enhancements
 
-### 🐟 Switch to the `fish` shell (Friendly Interactive Shell)
+### Switch to the `fish` shell (Friendly Interactive Shell)
 
 ```bash
 brew install fish
