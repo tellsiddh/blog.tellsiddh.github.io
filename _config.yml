@@ -15,7 +15,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-include-cache
 
-author: siddarth
+author: siddharth
 
 # Archives
 category_archive:

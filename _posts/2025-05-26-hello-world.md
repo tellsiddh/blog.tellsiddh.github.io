@@ -2,7 +2,7 @@
 layout: single
 title: "Hello, World!"
 date: 2025-05-26
-author: siddarth
+author: siddharth
 categories: [personal]
 read_time: true
 comments: true
@@ -13,7 +13,7 @@ toc_sticky: true
 ---
 
 Welcome to my blog!  
-I'm **Siddarth**, a software engineer who loves to build, experiment, and learn new things. I’ve created this blog as a way to document my journey, share what I learn, and hopefully help others who are on a similar path.
+I'm **Siddharth**, a software engineer who loves to build, experiment, and learn new things. I’ve created this blog as a way to document my journey, share what I learn, and hopefully help others who are on a similar path.
 
 ---
 
@@ -80,7 +80,7 @@ plugins:                              # Adds extra features to the blog
   - jekyll-seo-tag                    # Helps improve search engine visibility
   - jekyll-include-cache              # Optimizes page includes for speed
 
-author: siddarth                      # My author name for posts
+author: siddharth                      # My author name for posts
 
 category_archive:
   type: liquid
@@ -118,4 +118,4 @@ Want to connect or follow along?
 [Twitter](https://twitter.com/tellsiddh)
 
 Stay curious,  
-**Siddarth**
+**Siddharth**
