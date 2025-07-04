@@ -5,4 +5,4 @@ permalink: /about/
 author_profile: true
 ---
 
-I'm Siddarth, an engineer starting his journey into tech blogs.
+I'm Siddharth, an engineer starting his journey into tech blogs.

@@ -2,7 +2,7 @@
 layout: single
 title: "My Terminal Workflow"
 date: 2025-05-26
-author: siddarth
+author: siddharth
 categories: [tech]
 read_time: true
 comments: true
@@ -439,4 +439,4 @@ These commands reflect months of actual engineering activity — not just tutori
 - Check out [blog.tellsiddh.com](https://blog.tellsiddh.com)
 
 Stay curious and keep building!  
-— **Siddarth**
+— **Siddharth**
