@@ -131,7 +131,7 @@ So, I felt confident rolling the same changes into prod.
 ## The Deployment – What Went Wrong?
 
 Once approved, we deployed changes in prod — both the **infrastructure scale-up** and **advanced security enablement** — simultaneously. This was the beginning of the outage. Below is an image of our cluster migration status during the deployment.
-![Cluster Migration Status](assets/images/cluster_migration_1.png)
+![Cluster Migration Status](/assets/images/cluster_migration_1.png)
 
 It showed that new nodes had been added and traffic routing was successful. It had now reached the point where it was supposed to copy the shards to the new nodes. This is when we started noticing issues. The cluster status turned to "RED". We were unable to access the cluster and the OpenSearch dashboard was not loading. Any index or search operation was failing with a "503 Service Unavailable" error.
 
@@ -190,7 +190,7 @@ This was the index that was causing the issue. The support team tried to reassig
 
 I had a few options at this point. I could either wait for the cluster to recover on its own, or abandon that cluster and create a new one. I decided to wait for a few more hours, but the cluster was still in the same state. I was unable to access any indices or perform any operations on the cluster. I confirmed that all data nodes were migrated and in active state.
 
-![Cluster Nodes](assets/images/data_nodes.png)
+![Cluster Nodes](/assets/images/data_nodes.png)
 
 I explored every workaround:
 
