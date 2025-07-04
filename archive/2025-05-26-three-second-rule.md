@@ -2,7 +2,7 @@
 layout: single
 title: "Why Web Performance Matters More Than Ever in 2025"
 date: 2025-05-26
-author: siddarth
+author: siddharth
 categories: [tech]
 tags: [performance, web, speed, UX, core-web-vitals]
 read_time: true
