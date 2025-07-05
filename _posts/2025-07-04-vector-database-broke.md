@@ -16,6 +16,20 @@ Our vector database of choice is the OpenSearch service. We initially used their
 
 <!--more-->
 
+## Update: July 4, 2025
+
+AWS support identified a stuck snapshot blocking shard relocation and requested approval to perform a rolling restart of data nodes in the blue environment. After getting our approval for potential outages (since we had a backup domain which was now being used actively), they successfully restarted the nodes and confirmed the cluster returned to a healthy green state with all indices accessible.
+
+Upon viewing the cluster status, I confirmed that the cluster, although in the green state, was still trying to apply some changes.
+
+![Cluster Status](/assets/images/cluster_latest_state_green.png)
+
+# TL;DR
+
+- **Incident Date:** July 3, 2025
+- **Duration:** ~5 hours
+- **Impact:** Production OpenSearch cluster became inaccessible due to simultaneous scaling and security changes.
+
 ## How It Started
 
 During the week of June 30th, we noticed extreme JVM pressure and high CPU utilization in our Test environment. Our setup had:
