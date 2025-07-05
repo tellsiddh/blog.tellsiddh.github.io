@@ -16,6 +16,14 @@ Our vector database of choice is the OpenSearch service. We initially used their
 
 <!--more-->
 
+## Update: July 5, 2025
+
+AWS support confirmed that the our cluster has fully recovered and is now in a healthy state. They also confirmed that the migration was now fully completed and all indices are accessible. We were able to confirm the same by visually looking at the cluster status. We now needed to test the cluster and make a decision if we wanted to point our pipelines to this cluster or not.
+
+Waiting for AWS support to tell us if they can sync the two clusters for us - our old one and the new one. If they can, we will be able to point our pipelines to the new cluster without losing any data. If not, we will have to reingest the data from S3 again. I also needed approvals from my Director if we wanted to point our pipelines back to the old cluster or not.
+
+So we wait...
+
 ## Update: July 4, 2025
 
 AWS support identified a stuck snapshot blocking shard relocation and requested approval to perform a rolling restart of data nodes in the blue environment. After getting our approval for potential outages (since we had a backup domain which was now being used actively), they successfully restarted the nodes and confirmed the cluster returned to a healthy green state with all indices accessible.
@@ -29,6 +37,7 @@ Upon viewing the cluster status, I confirmed that the cluster, although in the g
 - **Incident Date:** July 3, 2025
 - **Duration:** ~5 hours
 - **Impact:** Production OpenSearch cluster became inaccessible due to simultaneous scaling and security changes.
+- **Speculations:** Without knowing for sure or AWS confirming, I will be mentioning if something is a pure speculation from my end. I have asked AWS for a root cause analysis and will update this post once I receive it.
 
 ## How It Started
 
@@ -111,7 +120,7 @@ This resulted in a major performance improvement: JVM pressure dropped, CPU stab
 
 ## The Setup in Production
 
-Confident in the new setup, I decided to apply the same configuration to production on **July 3rd**. However, there was one **critical difference**:
+Confident in the new setup, I decided to apply the same configuration to production on **July 3rd**. However, there was one (SPECULATION: there might be more than one difference) **critical difference**:
 
 - In **test**, we applied configuration and security changes **separately**.
 - In **production**, we applied **both** at the same time.
@@ -120,7 +129,7 @@ Confident in the new setup, I decided to apply the same configuration to product
 
 ## Why Security Changes?
 
-We had observed random index creations in test and wanted to enable **AUDIT_LOGS** to track user activity. That required enabling **advanced security**, which in turn required a **master user**.
+We had observed random index creations in test and wanted to enable **AUDIT_LOGS** to track user activity. That required enabling **advanced security**, which in turn required a **master user**. Advanced security also provides features like fine-grained access control (FGAC) and internal user database management.
 
 ```hcl
 advanced_security_options = {
@@ -144,7 +153,7 @@ So, I felt confident rolling the same changes into prod.
 
 ## The Deployment – What Went Wrong?
 
-Once approved, we deployed changes in prod — both the **infrastructure scale-up** and **advanced security enablement** — simultaneously. This was the beginning of the outage. Below is an image of our cluster migration status during the deployment.
+Once approved, we deployed changes in prod — both the **infrastructure scale-up** and **advanced security enablement** — simultaneously. This was the beginning of the outage (SPECULATION: we do not know for sure if this was the beginning). Below is an image of our cluster migration status during the deployment.
 ![Cluster Migration Status](/assets/images/cluster_migration_1.png)
 
 It showed that new nodes had been added and traffic routing was successful. It had now reached the point where it was supposed to copy the shards to the new nodes. This is when we started noticing issues. The cluster status turned to "RED". We were unable to access the cluster and the OpenSearch dashboard was not loading. Any index or search operation was failing with a "503 Service Unavailable" error.
@@ -172,11 +181,13 @@ That’s when I realized: **the security plugin hadn’t initialized properly**.
 
 I attempted master-user access via IAM — still failed.
 
+This was around 3:00 pm.
+
 ---
 
 ## AWS Support Weighs In
 
-They were able to confirm that the cluster was stuck in a state where it was trying to copy the shards to the new nodes, but it was unable to do so. They initially mentioned that this is a normal behavior and the cluster would eventually recover. However, after waiting for a few hours, the cluster was still in the same state and we were unable to access it.
+At 6:15 pm I contacted AWS support. They were able to confirm that the cluster was stuck in a state where it was trying to copy the shards to the new nodes, but it was unable to do so. They initially mentioned that this is a normal behavior and the cluster would eventually recover. However, after waiting for a few hours, the cluster was still in the same state and we were unable to access it.
 
 AWS confirmed:
 
@@ -196,7 +207,7 @@ AWS confirmed:
 }
 ```
 
-This was the index that was causing the issue. The support team tried to reassign the shard, but it was still failing with the same error. This was an internal AWS index that is used to store the security configuration for the cluster. It was not able to migrate to the new nodes and was causing the cluster to be stuck in a state where it was unable to access any indices.
+This was the index that was causing the issue (SPECULATION: but semi confirmed by aws on the chime call). The support team tried to reassign the shard, but it was still failing with the same error. This was an internal AWS index that is used to store the security configuration for the cluster. It was not able to migrate to the new nodes and was causing the cluster to be stuck in a state where it was unable to access any indices.
 
 ---
 
