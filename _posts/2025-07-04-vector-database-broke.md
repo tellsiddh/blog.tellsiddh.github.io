@@ -22,8 +22,7 @@ We received the root cause analysis from AWS support. They confirmed that the is
 
 This was a huge relief as it confirmed our suspicions and provided us with a clear path forward. We will be implementing the recommended changes in our future deployments.
 
-"Until then, we recommend following this sequence: Enable FGAC first and then proceed with remote store migration if needed.”
-- AWS Support
+"Until then, we recommend following this sequence: Enable FGAC first and then proceed with remote store migration if needed.” ~ AWS Support
 
 This is honestly a good recommendation and I should have followed it with or without the AWS support confirmation. During any migrations or major changes, it is always a good idea to follow a sequence of steps that are known to work. This will help you avoid any unexpected issues and ensure that your changes are applied successfully. I am glad that the AWS support team was able to get us out of this situation quickly and efficiently with no data loss.
 
