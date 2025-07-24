@@ -12,9 +12,20 @@ toc: true
 toc_sticky: true
 ---
 
-Our vector database of choice is the OpenSearch service. We initially used their serverless instance to power our Retrieval-Augmented Generation (RAG) applications. However, slow ingestion speeds led us to move to a managed cluster setup.
+Our vector database of choice is the OpenSearch service. We initially used AWS's serverless instance to power our Retrieval-Augmented Generation (RAG) applications. However, slow ingestion speeds led us to migrate to a managed cluster setup.
 
 <!--more-->
+
+## Update: July 22, 2025
+
+We received the root cause analysis from AWS support. They confirmed that the issue was indeed caused by the simultaneous scaling and security changes. The domain was stuck in a modifying state due to simultaneous configuration changes: enabling both remote store and FGAC. They confirmed that this combination can cause a red index status for one of the system indices. The issue was resolved by deleting the affected system index and retrying the process. They said they will be implementing fixes to prevent similar incidents in the future.
+
+This was a huge relief as it confirmed our suspicions and provided us with a clear path forward. We will be implementing the recommended changes in our future deployments.
+
+"Until then, we recommend following this sequence: Enable FGAC first and then proceed with remote store migration if needed.”
+- AWS Support
+
+This is honestly a good recommendation and I should have followed it with or without the AWS support confirmation. During any migrations or major changes, it is always a good idea to follow a sequence of steps that are known to work. This will help you avoid any unexpected issues and ensure that your changes are applied successfully. I am glad that the AWS support team was able to get us out of this situation quickly and efficiently with no data loss.
 
 ## Update: July 5, 2025
 
