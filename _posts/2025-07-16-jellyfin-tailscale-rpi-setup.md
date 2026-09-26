@@ -9,85 +9,96 @@ redirect_from:
   - /media/raspberry-pi/tailscale/jellyfin/setting-up-a-jellyfin-server-with-tailscale-on-raspberry-pi/
 ---
 
-In this post, I will guide you through the process of setting up a Jellyfin media server on a Raspberry Pi and accessing it securely using Tailscale. This setup allows you to stream your media content from anywhere while ensuring that your connection is secure and private.
+In this post, I will walk through setting up a Jellyfin media server on a Raspberry Pi and accessing it securely from anywhere using Tailscale. Nothing gets exposed to the public internet; every device talks to the Pi over the Tailscale network.
 
 <!--more-->
 
 ## Prerequisites
-Before we begin, ensure you have the following:
-- A Raspberry Pi (preferably Raspberry Pi 4 or later)
-- A microSD card with Raspberry Pi OS installed
-- Basic knowledge of using the terminal
+
+Before we begin, make sure you have the following:
+
+- A Raspberry Pi (preferably a Raspberry Pi 4 or later)
+- A microSD card with an OS installed. I used Ubuntu Server because I wanted a minimal setup with no desktop environment, managed entirely over SSH. Any Raspberry Pi OS variant will work too.
+- Basic familiarity with the terminal
 - An internet connection for your Raspberry Pi
 
 ## Step 1: Update Your Raspberry Pi
-First, make sure your Raspberry Pi is up to date. Open a terminal and run the following commands:
+
+First, make sure your Raspberry Pi is up to date. Open a terminal and run:
+
 ```bash
 sudo apt update
 sudo apt upgrade -y
 ```
 
-I installed the Ubuntu server version on my Raspberry Pi, but you can use any Raspberry Pi OS variant. I selected this version because I wanted a minimal setup without a desktop environment I can access via SSH.
-
 ## Step 2: Install Jellyfin
-Next, we will install Jellyfin. Run the following commands in your terminal:
+
+Next, install Jellyfin using the official install script, then open its port in the firewall:
+
 ```bash
-sudo curl https://repo.jellyfin.org/install-debuntu.sh | sudo bash
+curl https://repo.jellyfin.org/install-debuntu.sh | sudo bash
 sudo ufw allow 8096/tcp
 ```
 
-The below links provide additional information on installing Jellyfin. They are discussion threads that can help you troubleshoot any issues you might encounter during the installation process.
-You can also find the official installation guide on the Jellyfin website.
+That's it. Jellyfin is now installed. You can reach the web interface at `http://<your-raspberry-pi-ip>:8096` in your browser.
 
-https://github.com/jellyfin/jellyfin/discussions/7460
+If you run into trouble, these two threads helped me, alongside the [official installation guide](https://jellyfin.org/docs/general/installation/linux):
 
-https://gist.github.com/aslafy-z/dce9fd98bbe42f21095eb231687ae4f5
+- [jellyfin/jellyfin discussion #7460](https://github.com/jellyfin/jellyfin/discussions/7460)
+- [Installing Jellyfin on a Raspberry Pi (gist)](https://gist.github.com/aslafy-z/dce9fd98bbe42f21095eb231687ae4f5)
 
-That's it! Jellyfin is now installed on your Raspberry Pi. You can access the Jellyfin web interface by navigating to `http://<your-raspberry-pi-ip>:8096` in your web browser.
+Add the `jellyfin` service user to your own group so it can read your media:
 
-Add your jellyfin user in your user group to allow all access needed:
 ```bash
 sudo usermod -aG $USER jellyfin
 ```
 
-Commands to check status and restart Jellyfin:
+Make sure your content folder is traversable by other users (adjust the path to wherever your media lives):
+
+```bash
+chmod o+x /home/raspberrypi/Content
+```
+
+Useful commands to check on and restart Jellyfin:
+
 ```bash
 sudo systemctl status jellyfin
 sudo systemctl restart jellyfin
 ```
 
-Make sure your content folder has the correct permissions:
-```bash
-chmod o+x /home/raspberrypi/Content
-```
-
 ## Step 3: Install Tailscale
-Now, we will install Tailscale to securely access your Jellyfin server from anywhere. Run the following commands:
+
+Now install Tailscale so you can reach the Jellyfin server securely from anywhere:
+
 ```bash
 curl -fsSL https://tailscale.com/install.sh | sh
 sudo tailscale up
 ```
 
-To check the status of Tailscale, you can use:
+`tailscale up` prints a login URL. Open it, authenticate, and the Pi joins your tailnet. To check its status:
+
 ```bash
 tailscale status
 ```
 
-Once you login to Tailscale, you will need to download the tailscale client on your devices (laptop, phone, etc.) to access the Jellyfin server. You can find the Tailscale client for various platforms on their [official website](https://tailscale.com/download).
+Then install the Tailscale client on the devices you want to stream from (laptop, phone, etc.). Clients for every platform are on the [Tailscale download page](https://tailscale.com/download).
 
-## Step 4: Accessing Jellyfin via Tailscale
-After installing Tailscale on your devices, you can access your Jellyfin server by navigating to `http://<tailscale-ip>:8096` in your web browser. The Tailscale IP can be found in the Tailscale admin console or by running `tailscale status` on your Raspberry Pi.
+## Step 4: Access Jellyfin via Tailscale
 
-You can also use the local IP address of your Raspberry Pi if you want. It can be accessed locally and via Tailscale. The local IP address can be found by running:
+With Tailscale running on both ends, open `http://<tailscale-ip>:8096` in your browser. The Pi's Tailscale IP is shown in the Tailscale admin console or in the output of `tailscale status` on the Pi.
+
+You can still use the Pi's local IP when you're on the same network. Find it with:
+
 ```bash
 hostname -I
 ```
 
-## Note
+## Notes from My Setup
 
-On my iPhone, I added the Tailscale client and was able to access the Jellyfin server without any issues. The streaming quality was excellent, and I could browse my media library seamlessly. I had to configure the VPN but it was straightforward. I also set up the Jellyfin app on my iPhone, which allowed me to stream content directly from the app without needing to use a web browser. I use FinAmp, a Jellyfin client for iOS, which provides a great user experience for streaming audio.
+On my iPhone, I added the Tailscale client and could access the Jellyfin server without any issues. Streaming quality was excellent and browsing the library was smooth. Configuring the VPN profile took a minute but was straightforward. I also set up the Jellyfin app on my iPhone, which streams directly without a browser. For music I use [Finamp](https://github.com/jmshrv/finamp), a Jellyfin client for iOS that's great for audio.
 
 ## Conclusion
-You have successfully set up a Jellyfin media server on your Raspberry Pi and secured it with Tailscale. Now you can enjoy your media content from anywhere, securely and privately.
+
+You now have a Jellyfin media server running on your Raspberry Pi, reachable from anywhere over Tailscale without opening a single port to the internet. Enjoy your media, securely and privately.
 
 **– Siddharth**

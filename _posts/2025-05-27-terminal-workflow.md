@@ -3,12 +3,13 @@ layout: post
 title: "My Terminal Workflow"
 date: 2025-05-27
 categories: [tech]
+tags: [terminal, fish, git, macos]
 toc: true
 ---
 
-I've collected and used thousands of terminal commands through actual devops, AI/ML, data science, full-stack web development, and cloud engineering workflows.
+I've collected and used thousands of terminal commands through actual DevOps, AI/ML, data science, full-stack web development, and cloud engineering work.
 
-This post captures **the most frequently used**, **most impactful**, and **uniquely powerful** commands from that experience. Each one has been battle-tested and integrated into real engineering environments.
+This post captures the most frequently used, most impactful, and uniquely powerful commands from that experience. Each one has been battle-tested in real engineering environments.
 
 <!--more-->
 
@@ -24,9 +25,7 @@ chsh -s /opt/homebrew/bin/fish
 fish
 ```
 
-> Enables better auto-suggestions, syntax highlighting, and user-friendliness.
-
----
+Fish gives you autosuggestions, syntax highlighting, and sane defaults out of the box.
 
 ### Install Core Tools
 
@@ -34,44 +33,34 @@ fish
 brew install git htop jq wget tree curl tmux
 ```
 
-> These are essentials for terminal power users.
+These are the essentials for terminal power users.
 
----
-
-### Add PATHs in `fish` shell
+### Add to `PATH` in `fish`
 
 ```fish
 fish_add_path /opt/homebrew/bin/
 ```
 
-Make it persistent via `config.fish`:
-
-```bash
-nano ~/.config/fish/config.fish
-```
-
----
+`fish_add_path` stores the path in a universal variable, so it persists across sessions without touching `config.fish`.
 
 ### Use `alias` for shortcuts
 
-```bash
+```fish
 alias gs="git status"
 alias ll="ls -lah"
 alias gc="git commit -m"
 alias gco="git checkout"
 ```
 
-Save to:
+Save these to `~/.config/fish/config.fish` so they load in every new shell:
 
 ```bash
 nano ~/.config/fish/config.fish
 ```
 
----
-
 ## Git: Daily Driver for Projects
 
-These are the most-used git commands that show up repeatedly across dev workflows:
+These are the git commands that show up repeatedly across dev workflows:
 
 ```bash
 git clone git@github.com:user/project.git
@@ -79,7 +68,8 @@ git checkout -b feature/my-branch
 git switch branch-name
 git commit -m "meaningful message"
 git push --set-upstream origin branch-name
-git stash / git stash pop
+git stash
+git stash pop
 git reset HEAD~1
 git log --oneline --graph --all
 ```
@@ -90,14 +80,12 @@ Create and jump to a new feature branch:
 git checkout -b fix/critical-issue
 ```
 
-View status or staged diff:
+View status or the working diff:
 
 ```bash
 git status
 git diff
 ```
-
----
 
 ## Python Development Workflows
 
@@ -130,8 +118,6 @@ python -X importtime script.py 2> import.log
 tuna import.log
 ```
 
----
-
 ## Networking, SSH & System Tools
 
 ### SSH with custom keys
@@ -140,13 +126,11 @@ tuna import.log
 ssh -i ~/.ssh/id_rsa user@host
 ```
 
-Copy your key:
+Copy your public key to a host:
 
 ```bash
 ssh-copy-id user@host
 ```
-
----
 
 ### Diagnose DNS, IP, Connectivity
 
@@ -157,13 +141,11 @@ nslookup example.com
 ifconfig | grep broadcast
 ```
 
-Find your local IP:
+Find your local IP on macOS:
 
 ```bash
 ipconfig getifaddr en0
 ```
-
----
 
 ### Scan network devices
 
@@ -171,11 +153,9 @@ ipconfig getifaddr en0
 sudo nmap -sn 192.168.1.0/24
 ```
 
----
-
 ## Package Managers
 
-### Brew (macOS)
+### Homebrew (macOS)
 
 ```bash
 brew install wget git jq
@@ -183,9 +163,7 @@ brew update
 brew upgrade
 ```
 
----
-
-### Pip & Python packages
+### pip & Python packages
 
 ```bash
 pip install package-name
@@ -193,8 +171,6 @@ pip uninstall package-name
 pip freeze > requirements.txt
 pip install -r requirements.txt
 ```
-
----
 
 ## File and Text Utilities
 
@@ -211,16 +187,12 @@ grep -r "keyword" .
 grep "error" logs.txt
 ```
 
----
-
 ### Recursive file ops
 
 ```bash
 find . -name "*.py"
 find . -type f -exec cat {} +
 ```
-
----
 
 ### Disk space
 
@@ -229,29 +201,23 @@ df -h
 du -sh *
 ```
 
----
-
-### Clean terminal
+### Clear the terminal
 
 ```bash
 clear
-Ctrl + L
 ```
 
----
+Or press `Ctrl + L`.
 
 ## System Monitoring
 
 ### htop
 
 ```bash
-sudo apt install htop
 htop
 ```
 
-> Better than `top` — shows processes, memory, swap, threads, and more.
-
----
+Better than `top`: it shows processes, memory, swap, threads, and more. It's already installed from the core tools step above (`sudo apt install htop` on Debian/Ubuntu).
 
 ### Check ports
 
@@ -260,13 +226,11 @@ lsof -i :8000
 sudo lsof -i -P | grep ':8080'
 ```
 
-Kill process by PID:
+Kill a process by PID:
 
 ```bash
 kill -9 <PID>
 ```
-
----
 
 ## Automation Scripts
 
@@ -277,7 +241,7 @@ chmod +x script.py
 ./script.py
 ```
 
-Zip files:
+Zip a folder:
 
 ```bash
 zip -r archive.zip folder/
@@ -289,11 +253,9 @@ Unzip:
 unzip file.zip
 ```
 
----
-
 ## APIs & Web Tools
 
-### Curl with headers
+### curl with headers
 
 ```bash
 curl -X POST https://api.example.com/endpoint \
@@ -302,9 +264,7 @@ curl -X POST https://api.example.com/endpoint \
   -d '{"key":"value"}'
 ```
 
----
-
-### Secure file uploads (example)
+### Upload to a pre-signed S3 URL
 
 ```bash
 curl -X PUT "$SIGNED_S3_URL" \
@@ -312,18 +272,17 @@ curl -X PUT "$SIGNED_S3_URL" \
   --upload-file ./file.pdf
 ```
 
----
-
 ## Audio Tools (AI & Speech)
 
-### TTS using LLaMA-TTS:
+### TTS using llama.cpp
 
-This needs llama.cpp setup, binary works.
+This needs a working `llama.cpp` build; the `llama-tts` binary does the rest.
+
 ```bash
 llama-tts --tts-out-default -p "Hello world" && ffplay output.wav -nodisp -autoexit
 ```
 
-Stream via Flask API:
+Stream via a Flask API:
 
 ```bash
 curl -X POST http://localhost:5000/tts \
@@ -332,9 +291,7 @@ curl -X POST http://localhost:5000/tts \
   --output output.wav
 ```
 
----
-
-## Data Engineering Tools
+## Infrastructure & Cloud
 
 ### Terraform
 
@@ -351,59 +308,54 @@ Target specific modules:
 terraform apply -target=module.my_module
 ```
 
----
-
 ### AWS CLI
 
 ```bash
-aws s3 ls
 aws configure
+aws s3 ls
 aws lambda invoke --function-name my-func out.txt
 ```
 
-Use localstack:
+Run LocalStack for local AWS emulation:
 
 ```bash
 LOCALSTACK_AUTH_TOKEN=dummy localstack start
 ```
 
----
-
 ## High-impact One-liners
 
-### Re-run last command with `sudo`
+### Re-run the last command with `sudo`
 
-!! does not work on fish, not sure why?
+In bash or zsh:
+
 ```bash
 sudo !!
 ```
 
-### Repeat previous command
+`!!` doesn't work in fish because fish has no history expansion. Use the history variable instead, or press `Alt + S` to prepend `sudo` to the previous command:
 
-```bash
-!!
+```fish
+sudo $history[1]
 ```
 
-### View last 100 commands
+### View the last 100 commands
 
 ```bash
 history | tail -n 100
 ```
 
----
-
 ### Git reset & clean
+
+Throws away all uncommitted changes and untracked files, so be sure before you run it:
 
 ```bash
 git reset --hard HEAD
 git clean -fd
 ```
 
----
-
 ## Miscellaneous Yet Powerful
 
-### View markdown docs in browser
+### Serve the current directory over HTTP
 
 ```bash
 python3 -m http.server 8000
@@ -416,21 +368,25 @@ export AWS_PROFILE=default
 export OPENAI_API_KEY=your-key
 ```
 
-### Decode JWT
+In fish, use `set -x` instead:
+
+```fish
+set -x AWS_PROFILE default
+```
+
+### Decode a JWT payload
 
 ```bash
 echo "<JWT_PART_2>" | base64 --decode
 ```
 
----
-
 ## Final Words
 
-These commands reflect months of actual engineering activity — not just tutorials. If you found this useful:
+These commands reflect months of actual engineering activity, not just tutorials. If you found this useful:
 
 - Follow [@tellsiddh](https://twitter.com/tellsiddh)
 - Star [my GitHub](https://github.com/tellsiddh)
 - Check out [blog.tellsiddh.com](https://blog.tellsiddh.com)
 
-Stay curious and keep building!  
-— **Siddharth**
+Stay curious and keep building!
+**Siddharth**
