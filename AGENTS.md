@@ -43,10 +43,6 @@ index.md             home page (layout: home)
 about.md, categories.md, 404.md
 ```
 
-`_archive.tags.md` and `_archive.year-archive.md` are leftovers from an older theme. Jekyll
-ignores underscore-prefixed files, and the layouts they reference no longer exist. Leave them
-alone unless asked to clean up.
-
 ## Writing a post
 
 File name: `_posts/YYYY-MM-DD-short-slug.md`. The date in the filename is the publish date.
