@@ -1,15 +1,9 @@
 ---
-layout: single
+layout: post
 title: "Oct 31st – Tripped Circuit Breaker for Vector Database"
 date: 2025-10-31
-author: siddharth
 categories: [database]
-read_time: true
-comments: true
-share: true
-related: true
 toc: true
-toc_sticky: true
 ---
 
 Our vector database of choice is the **AWS OpenSearch Service**. **October 31st**, we encountered an unexpected challenge, our OpenSearch cluster tripped a **circuit breaker** due to high memory usage.

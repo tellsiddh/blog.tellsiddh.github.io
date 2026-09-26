@@ -1,0 +1,76 @@
+---
+layout: default
+---
+{% assign writer = site.author %}
+{% assign words = content | number_of_words %}
+{% assign minutes = words | divided_by: 220 | plus: 1 %}
+
+<article class="post">
+  <header class="post__header">
+    <p class="post__kicker">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      <span aria-hidden="true">&middot;</span>
+      <span>{{ minutes }} min read</span>
+    </p>
+
+    <h1 class="post__title">{{ page.title }}</h1>
+
+    {% if page.categories.size > 0 or page.tags.size > 0 %}
+      <ul class="tags">
+        {% for category in page.categories %}
+          <li><a class="tag" href="{{ '/categories/' | relative_url }}#{{ category | slugify }}">{{ category }}</a></li>
+        {% endfor %}
+        {% for tag in page.tags %}
+          <li><span class="tag tag--plain">{{ tag }}</span></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </header>
+
+  <div class="post__body">
+    {% if page.toc %}
+      <div class="toc-rail">
+        <nav class="toc" data-toc aria-label="Table of contents" hidden>
+          <details class="toc__box" data-toc-box>
+            <summary class="toc__heading">Contents</summary>
+          </details>
+        </nav>
+      </div>
+    {% endif %}
+
+    <div class="prose" data-article>
+      {{ content }}
+    </div>
+  </div>
+
+  <footer class="post__footer">
+    <div class="bio">
+      {% if writer.avatar %}
+        <img class="bio__avatar" src="{{ writer.avatar | relative_url }}" alt="" width="56" height="56" loading="lazy">
+      {% endif %}
+      <div>
+        <p class="bio__name">{{ writer.name }}</p>
+        <p class="bio__text">{{ writer.bio }}{% if writer.location %} Based in {{ writer.location }}.{% endif %}</p>
+      </div>
+    </div>
+
+    {% if page.previous or page.next %}
+      <nav class="pager" aria-label="More posts">
+        {% if page.previous %}
+          <a class="pager__link pager__link--prev" href="{{ page.previous.url | relative_url }}">
+            <span class="pager__label">Older</span>
+            <span class="pager__title">{{ page.previous.title }}</span>
+          </a>
+        {% endif %}
+        {% if page.next %}
+          <a class="pager__link pager__link--next" href="{{ page.next.url | relative_url }}">
+            <span class="pager__label">Newer</span>
+            <span class="pager__title">{{ page.next.title }}</span>
+          </a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  </footer>
+</article>
+
+<script src="{{ '/assets/js/post.js' | relative_url }}" defer></script>

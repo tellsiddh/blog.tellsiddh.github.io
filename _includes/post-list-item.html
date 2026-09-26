@@ -1,0 +1,20 @@
+{% assign post = include.post %}
+<li class="entry">
+  <p class="entry__date">
+    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+  </p>
+
+  <h3 class="entry__title">
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+  </h3>
+
+  <p class="entry__excerpt">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 200 }}</p>
+
+  {% if post.categories.size > 0 %}
+    <ul class="tags">
+      {% for category in post.categories limit: 3 %}
+        <li><a class="tag" href="{{ '/categories/' | relative_url }}#{{ category | slugify }}">{{ category }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</li>

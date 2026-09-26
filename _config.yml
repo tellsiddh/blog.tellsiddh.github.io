@@ -1,29 +1,57 @@
-title: tellsiddh's blog
-description: A simple blog powered by Jekyll
+title: "tellsiddh's blog"
+tagline: "Notes on engineering, infrastructure, and the things I break along the way."
+description: >-
+  Siddharth Jain writing about software engineering, cloud infrastructure,
+  databases, and home lab experiments.
 url: "https://blog.tellsiddh.com"
 baseurl: ""
+lang: en
 
 permalink: /:categories/:title/
-
-remote_theme: "mmistakes/minimal-mistakes@4.27.1"
-minimal_mistakes_skin: "dark" # or "default", "air", "neon" etc.
 excerpt_separator: "<!--more-->"
+
+author:
+  name: "Siddharth Jain"
+  bio: "Curiosity fuels innovation."
+  location: "USA"
+  avatar: "/assets/images/profile.jpeg"
+  twitter: tellsiddh
+  links:
+    - label: "GitHub"
+      url: "https://github.com/tellsiddh"
+    - label: "Twitter"
+      url: "https://twitter.com/tellsiddh"
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
 
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-  - jekyll-include-cache
+  - jekyll-redirect-from
 
-author: siddharth
+feed:
+  path: /feed.xml
 
-# Archives
-category_archive:
-  type: liquid
-  path: /categories/
-tag_archive:
-  type: liquid
-  path: /tags/
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+    values:
+      layout: page
 
-twitter_username: tellsiddh
-github_username: tellsiddh
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - out.txt
+  - README.md

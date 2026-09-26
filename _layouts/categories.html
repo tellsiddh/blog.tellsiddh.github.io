@@ -1,0 +1,35 @@
+---
+layout: default
+---
+<article class="page">
+  <header class="page__header">
+    <h1 class="page__title">{{ page.title }}</h1>
+    {% if page.subtitle %}<p class="page__subtitle">{{ page.subtitle }}</p>{% endif %}
+  </header>
+
+  {% assign body = content | strip %}
+  {% if body != '' %}
+    <div class="prose">{{ body }}</div>
+  {% endif %}
+
+  {% assign categories = site.categories | sort %}
+
+  <ul class="chips">
+    {% for pair in categories %}
+      <li><a class="tag" href="#{{ pair[0] | slugify }}">{{ pair[0] }} <span class="tag__count">{{ pair[1] | size }}</span></a></li>
+    {% endfor %}
+  </ul>
+
+  {% for pair in categories %}
+    {% assign name = pair[0] %}
+    {% assign posts = pair[1] %}
+    <section class="archive" id="{{ name | slugify }}">
+      <h2 class="section__heading">{{ name }}</h2>
+      <ol class="entries">
+        {% for post in posts %}
+          {% include post-list-item.html post=post %}
+        {% endfor %}
+      </ol>
+    </section>
+  {% endfor %}
+</article>

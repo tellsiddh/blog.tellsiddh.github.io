@@ -1,0 +1,13 @@
+{% assign owner = site.author %}
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p class="footer__note">&copy; {{ 'now' | date: "%Y" }} {{ owner.name | default: site.title }}</p>
+
+    <ul class="footer__links">
+      {% for link in owner.links %}
+        <li><a href="{{ link.url }}" rel="me noopener">{{ link.label }}</a></li>
+      {% endfor %}
+      <li><a href="{{ '/feed.xml' | relative_url }}">RSS</a></li>
+    </ul>
+  </div>
+</footer>

@@ -1,15 +1,9 @@
 ---
-layout: single
+layout: post
 title: "My Terminal Workflow"
-date: 2025-05-26
-author: siddharth
+date: 2025-05-27
 categories: [tech]
-read_time: true
-comments: true
-share: true
-related: true
 toc: true
-toc_sticky: true
 ---
 
 I've collected and used thousands of terminal commands through actual devops, AI/ML, data science, full-stack web development, and cloud engineering workflows.

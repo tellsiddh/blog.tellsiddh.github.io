@@ -1,15 +1,12 @@
 ---
-layout: single
+layout: post
 title: "Setting up a Jellyfin server with Tailscale on Raspberry Pi"
-date: 2025-07-04
-author: siddharth
-categories: [media, raspberry-pi, tailscale, jellyfin]
-read_time: true
-comments: true
-share: true
-related: true
+date: 2025-07-16
+categories: [homelab]
+tags: [raspberry-pi, tailscale, jellyfin]
 toc: true
-toc_sticky: true
+redirect_from:
+  - /media/raspberry-pi/tailscale/jellyfin/setting-up-a-jellyfin-server-with-tailscale-on-raspberry-pi/
 ---
 
 In this post, I will guide you through the process of setting up a Jellyfin media server on a Raspberry Pi and accessing it securely using Tailscale. This setup allows you to stream your media content from anywhere while ensuring that your connection is secure and private.

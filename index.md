@@ -1,6 +1,5 @@
 ---
 layout: home
-title: "Welcome to My Blog"
-author_profile: true
-excerpt: "Sharing my thoughts on tech, life, and code."
+title: "Home"
+excerpt: "I'm an engineer writing about cloud infrastructure, databases, and the home lab projects I tinker with on weekends."
 ---

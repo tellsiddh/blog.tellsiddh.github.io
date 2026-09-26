@@ -1,15 +1,9 @@
 ---
-layout: single
+layout: post
 title: "July 3rd – How We Lost Our Vector Database (and Recovered)"
 date: 2025-07-04
-author: siddharth
 categories: [database]
-read_time: true
-comments: true
-share: true
-related: true
 toc: true
-toc_sticky: true
 ---
 
 Our vector database of choice is the OpenSearch service. We initially used AWS's serverless instance to power our Retrieval-Augmented Generation (RAG) applications. However, slow ingestion speeds led us to migrate to a managed cluster setup.

@@ -1,14 +1,9 @@
 ---
-layout: single
+layout: post
 title: "Why Web Performance Matters More Than Ever in 2025"
 date: 2025-05-26
-author: siddharth
 categories: [tech]
 tags: [performance, web, speed, UX, core-web-vitals]
-read_time: true
-comments: true
-share: true
-related: true
 ---
 
 In today's digital-first world, performance isn't just a luxury—it's a necessity. Whether you're building a personal portfolio or running a SaaS product, how fast your site loads can determine whether users stay or bounce.

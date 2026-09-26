@@ -1,0 +1,38 @@
+---
+layout: default
+---
+{% assign owner = site.author %}
+
+<section class="intro">
+  {% if owner.avatar %}
+    <img class="intro__avatar" src="{{ owner.avatar | relative_url }}" alt="" width="88" height="88">
+  {% endif %}
+
+  <div class="intro__body">
+    <h1 class="intro__title">{{ page.heading | default: owner.name }}</h1>
+    <p class="intro__lede">{{ page.excerpt | default: site.tagline }}</p>
+
+    {% if owner.links %}
+      <ul class="intro__links">
+        {% for link in owner.links %}
+          <li><a href="{{ link.url }}" rel="me noopener">{{ link.label }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</section>
+
+{% assign body = content | strip %}
+{% if body != '' %}
+  <div class="prose intro__prose">{{ body }}</div>
+{% endif %}
+
+<section class="archive" aria-labelledby="writing">
+  <h2 class="section__heading" id="writing">Writing</h2>
+
+  <ol class="entries">
+    {% for post in site.posts %}
+      {% include post-list-item.html post=post %}
+    {% endfor %}
+  </ol>
+</section>

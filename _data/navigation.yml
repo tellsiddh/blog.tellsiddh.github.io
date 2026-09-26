@@ -1,12 +1,7 @@
-# _data/navigation.yml
 main:
   - title: "Home"
     url: /
   - title: "About"
     url: /about/
-  # - title: "Yearly Archive"
-  #   url: /year-archive/
-  # - title: "Tags"
-  #   url: /tags/
   - title: "Categories"
     url: /categories/

@@ -1,15 +1,8 @@
 ---
-layout: single
+layout: post
 title: "Hello, World!"
 date: 2025-05-26
-author: siddharth
 categories: [personal]
-read_time: true
-comments: true
-share: true
-related: true
-toc: true
-toc_sticky: true
 ---
 
 Welcome to my blog!  
